@@ -222,18 +222,11 @@ async function ensurePageExists(
 		searchParams,
 	);
 
-	const currentPage = contentByTitle.results[0];
+	const currentPage = contentByTitle.results.find(
+		({ ancestors }) => ancestors?.some(({ id }) => id == topPageId),
+	);
 
 	if (currentPage) {
-		if (
-			file.contentType === "page" &&
-			!currentPage.ancestors?.some((ancestor) => ancestor.id == topPageId)
-		) {
-			throw new Error(
-				`${file.pageTitle} is trying to overwrite a page outside the page tree from the selected top page`,
-			);
-		}
-
 		await adaptor.updateMarkdownValues(file.absoluteFilePath, {
 			publish: true,
 			pageId: currentPage.id,
