@@ -38,6 +38,7 @@ export function prepareAdfToUpload(
 
 	confluencePagesToPublish.forEach((node) => {
 		fileToPageIdMap[node.file.fileName] = node.file;
+		fileToPageIdMap[node.file.absoluteFilePath] = node.file;
 	});
 
 	confluencePagesToPublish.forEach((confluenceNode) => {
@@ -672,6 +673,11 @@ function processWikilinkToActualLink(
 					const wikilinkUrl = new URL(node.marks[0].attrs["href"]);
 
 					const pathName = decodeURI(wikilinkUrl.pathname);
+					const pathNameParts = pathName.split("/");
+					const fileName =
+						pathNameParts.length > 1
+							? pathNameParts[pathNameParts.length - 1]
+							: pathName;
 					const pagename =
 						wikilinkUrl.pathname !== ""
 							? `${pathName}.md`
@@ -681,7 +687,7 @@ function processWikilinkToActualLink(
 					if (linkPage) {
 						const confluenceUrl = `${settings.confluenceBaseUrl}/wiki/spaces/${linkPage.spaceKey}/pages/${linkPage.pageId}${wikilinkUrl.hash}`;
 						node.marks[0].attrs["href"] = confluenceUrl;
-						if (node.text === `${pathName}${wikilinkUrl.hash}`) {
+						if (node.text === `${fileName}${wikilinkUrl.hash}`) {
 							node.type = "inlineCard";
 							node.attrs = {
 								url: node.marks[0].attrs["href"],
