@@ -42,7 +42,9 @@ The project follows a domain-driven vertical slice architecture:
   /docs              # Documentation management
   /api               # REST API endpoints
   /tests             # Test suites
-  
+  /cad_engine        # Handles FreeCAD integrations
+  /core_logic        # Key system algorithms
+  /utils             # Includes utility modules used across the engine.
 /frontend
   /src
     /components      # Reusable UI components

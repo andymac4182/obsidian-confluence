@@ -3,10 +3,10 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.11
+  - python
   - postgresql=15
   - redis-py
-  - django=4.2
+  - django
   - djangorestframework
   - pytest
   - pytest-django
@@ -14,6 +14,11 @@ dependencies:
   - gdal
   - libgdal
   - pip
+  - pythreejs
+  - pyside6
+  - occt
+  - pythonocc-core
+  - ifcopenshell
   - pip:
     - django-cors-headers
     - python-dotenv
