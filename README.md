@@ -1,49 +1,186 @@
-# Markdown to Confluence Tools
+# EuroTempl System
 
-[![Discord](https://img.shields.io/discord/1102841755646316576)](https://discord.gg/3ZVEc3S48x)  
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/markdown-confluence/markdown-confluence/badge)](https://api.securityscorecards.dev/projects/github.com/markdown-confluence/markdown-confluence)
-[![Known Vulnerabilities](https://snyk.io/test/github/markdown-confluence/markdown-confluence/badge.svg)](https://snyk.io/test/github/markdown-confluence/markdown-confluence)
-![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/markdown-confluence/markdown-confluence/release-please.yml)
-![Lines of code](https://img.shields.io/tokei/lines/github/markdown-confluence/markdown-confluence)
-![GitHub manifest version](https://img.shields.io/github/manifest-json/v/markdown-confluence/obsidian-integration)  
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
+EuroTempl is a comprehensive parametric design and component management system built as a modular monolith. It combines the development simplicity of monolithic architecture with the scalability potential of microservices, enabling efficient creation and management of modular studio spaces and furniture with a focus on acoustics, noise insulation, and manufacturing efficiency.
 
+## Core Features
 
+The system provides powerful capabilities for parametric design and component management:
 
-Obsidian Downloads: ![GitHub all releases](https://img.shields.io/github/downloads/markdown-confluence/obsidian-integration/total)
+- Full parametric modeling with FreeCAD integration
+- Spatial data handling with PostGIS for 3D operations
+- Component and material management with comprehensive classification
+- Version-controlled documentation system
+- Bill of Materials (BOM) generation and management
+- REST API with complete OpenAPI documentation
 
-Copyright © 2022 Atlassian Pty Ltd   
-Copyright © 2022 Atlassian US, Inc  
+## Technology Stack
 
-Welcome to the `Markdown to Confluence Tools` project! This mono repository contains a collection of tools to convert and publish your Markdown files to Confluence, while using the Atlassian Document Format (ADF). We provide you with an Obsidian plugin, an npm CLI, a Docker CLI, a GitHub Action, and an npm library.
+### Backend
+- Django 4.2+ with Django REST Framework
+- PostgreSQL 15+ with PostGIS extension
+- Redis for caching and performance optimization
+- Python 3.11+ for FreeCAD integration
+- Token-based authentication system
 
-We focus on providing an opinionated, simple publishing workflow, with [Obsidian](https://obsidian.md/) as the recommended editor. However, you can use our tools with any Markdown files.
+### Frontend
+- React 18+ with TypeScript
+- Tailwind CSS for styling
+- React Query for state management
+- React Router for navigation
 
-All projects within this mono repo use the core npm library [@markdown-confluence/lib](https://www.npmjs.com/package/@markdown-confluence/lib) to provide the same features, ensuring consistent results across different interfaces.
+## Project Structure
 
-## Table of Contents
+The project follows a domain-driven vertical slice architecture:
 
-- [Features](#features)
-- [Documentation](#documentation)
-- [Contributing](#contributing)
-- [License](#license)
+```
+/backend
+  /core              # Base models and interfaces
+  /components        # Component management domain
+  /parameters        # Parameter management domain
+  /materials         # Material management domain
+  /geometry          # Spatial operations domain
+  /docs              # Documentation management
+  /api               # REST API endpoints
+  /tests             # Test suites
+  
+/frontend
+  /src
+    /components      # Reusable UI components
+    /features        # Domain-specific features
+    /services        # API integration
+    /utils           # Helper functions
+    /types           # TypeScript definitions
+    /tests           # Frontend tests
+```
 
-## Features
+## Getting Started
 
-- Converts Markdown files to [Atlassian Document Format (ADF)](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/)
-- Simple publishing workflow with [Obsidian](https://obsidian.md/) as the recommended editor
-- Can be used with any Markdown files
-- Supports Obsidian plugin, npm CLI, Docker CLI, GitHub Action, and npm library
+### Prerequisites
+
+Before setting up the project, ensure you have:
+
+- Docker and Docker Compose
+- Python 3.11+
+- Node.js 18+
+- PostgreSQL 15+ with PostGIS
+- FreeCAD with Python API
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourorg/eurotempl.git
+   cd eurotempl
+   ```
+
+2. Create and activate a virtual environment:
+   ```bash
+   conda env create -f environment.yml
+   conda activate EuroTempl  
+# verify the installation
+   python -c "import django; print(django.__version__)"
+   python -c "import FreeCAD; print(FreeCAD.Version())"
+   ```
+
+3. Install backend dependencies:
+   ```bash
+   cd backend
+   pip install -r requirements.txt
+   ```
+
+4. Install frontend dependencies:
+   ```bash
+   cd frontend
+   npm install
+   ```
+
+5. Set up the database:
+   ```bash
+   cd backend
+   python manage.py migrate
+   ```
+
+6. Start the development servers:
+   ```bash
+   # Backend
+   python manage.py runserver
+
+   # Frontend
+   cd frontend
+   npm start
+   ```
+
+## Development Guidelines
+
+### Code Quality
+
+We maintain high code quality standards through:
+
+- Comprehensive automated testing
+- Regular code reviews
+- Consistent code formatting
+- Type checking with TypeScript
+- Documentation requirements
+
+### Architecture Principles
+
+The system follows these key architectural principles:
+
+- Modular design with clear boundaries
+- Domain-driven development
+- Clean architecture patterns
+- Vertical slice architecture
+- SOLID principles
+
+### Testing
+
+Run the test suites:
+
+```bash
+# Backend tests
+cd backend
+python manage.py test
+
+# Frontend tests
+cd frontend
+npm test
+```
 
 ## Documentation
 
-For detailed installation and usage instructions, please visit our [documentation](https://markdown-confluence.com/).
+- API documentation is available at `/api/docs/` when running the server
+- Component documentation can be found in the `/docs` directory
+- Additional technical documentation is maintained in the wiki
+
+## Deployment
+
+The system can be deployed using Docker:
+
+```bash
+docker-compose up -d
+```
+
+Configuration for different environments is managed through environment variables defined in `.env` files.
 
 ## Contributing
-Contributions are welcome! If you have a feature request, bug report, or want to improve the plugin, please open an issue or submit a pull request on the GitHub repository.
+
+Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting pull requests.
 
 ## License
-This project is licensed under the [Apache 2.0](https://github.com/markdown-confluence/markdown-confluence/blob/main/LICENSE) License.
 
-## Disclaimer:
-The Apache license is only applicable to the Obsidian Confluence Integration (“Integration“), not to any third parties' services, websites, content or platforms that this Integration may enable you to connect with.  In another word, there is no license granted to you by the above identified licensor(s) to access any third-party services, websites, content, or platforms.  You are solely responsible for obtaining licenses from such third parties to use and access their services and to comply with their license terms. Please do not disclose any passwords, credentials, or tokens to any third-party service in your contribution to this Obsidian Confluence Integration project.”
+This project is licensed under a proprietary License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For support and questions:
+
+- Create an issue in the GitHub repository
+- Contact the development team at dev@eurotemp.org
+- Check our [FAQ](FAQ.md) for common questions
+
+## Acknowledgments
+
+Special thanks to:
+- The FreeCAD community for their excellent CAD platform
+- PostgreSQL and PostGIS teams for spatial database capabilities
+- All contributors who have helped shape this project

@@ -1,0 +1,23 @@
+name: EuroTempl
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - postgresql=15
+  - redis-py
+  - django=4.2
+  - djangorestframework
+  - pytest
+  - pytest-django
+  - freecad
+  - gdal
+  - libgdal
+  - pip
+  - pip:
+    - django-cors-headers
+    - python-dotenv
+    - psycopg2-binary
+    - drf-spectacular
+    - postgis
+    - semver
