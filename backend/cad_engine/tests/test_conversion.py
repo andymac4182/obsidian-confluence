@@ -7,9 +7,14 @@ import pytest
 from django.contrib.gis.geos import Point, GEOSGeometry
 from cad_engine.conversion import geos_to_freecad, freecad_to_geos
 
-# Initialize FreeCAD environment
-os.environ['FREECAD_MODULE_PATH'] = '/Applications/FreeCAD.app/Contents/Resources/Mod'
-os.environ['FREECAD_LIB_PATH'] = '/Applications/FreeCAD.app/Contents/Resources/lib'
+# Add FreeCAD lib directory to Python path
+CONDA_ENV = os.path.join(os.path.expanduser("~"), "miniforge3/envs/eurotempl")
+FREECAD_LIB = os.path.join(CONDA_ENV, "lib")
+if FREECAD_LIB not in sys.path:
+    sys.path.append(FREECAD_LIB)
+
+# Also need to set PYTHONPATH for FreeCAD modules
+os.environ["PYTHONPATH"] = FREECAD_LIB
 
 import FreeCAD as App
 import Part

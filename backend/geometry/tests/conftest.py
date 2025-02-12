@@ -1,7 +1,19 @@
 # backend/geometry/tests/conftest.py
 """Pytest configuration for geometry tests"""
 
+import os
+import sys
 import pytest
+
+# Add FreeCAD lib directory to Python path
+CONDA_ENV = os.path.join(os.path.expanduser("~"), "miniforge3/envs/eurotempl")
+FREECAD_LIB = os.path.join(CONDA_ENV, "lib")
+if FREECAD_LIB not in sys.path:
+    sys.path.append(FREECAD_LIB)
+
+# Also need to set PYTHONPATH for FreeCAD modules
+os.environ["PYTHONPATH"] = FREECAD_LIB
+
 import FreeCAD as App
 import Part
 
