@@ -26,4 +26,8 @@ dependencies:
     - drf-spectacular
     - postgis
     - semver
-    - pytest-asyncio
+    - pytest-asyncio  - cgal
+  - cmake
+  - cgal
+  - pybind11
+  - ninja

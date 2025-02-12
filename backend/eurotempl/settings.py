@@ -69,7 +69,8 @@ INSTALLED_APPS = [
     # Project apps
     'core',
     'cad_engine',
-    'parameters'
+    'parameters',
+    'geometry',
 ]
 
 MIDDLEWARE = [
@@ -162,3 +163,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+if 'test' in sys.argv:
+    for db in DATABASES.values():
+        db['TEST'] = {
+            'NAME': 'test_' + db['NAME'],
+            'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        }

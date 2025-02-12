@@ -118,11 +118,25 @@ Before setting up the project, ensure you have:
 cd backend/cad_engine
 python setup.py build_ext --inplace   
 ```
-8. build the C++ extensions for the parameters module:
-   ```bash
-   cd backend/parameters
-mkdir -p build
 
+8. build the C++ extensions for the parameters module:
+
+   ```bash
+   cd backend/parameters/build
+   cmake ..
+   cmake --build .
+   ```
+9. build the C++ extensions for the geometry module:
+
+   ```bash
+   cd backend/geometry
+   ./build.sh
+   ```
+
+10. Run the tests:
+
+   ```bash
+   pytest
    ```
 
 ## Development Guidelines
