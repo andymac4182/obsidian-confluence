@@ -1,3 +1,0 @@
-[[IgnoredVulns]]
-id = "GHSA-ww39-953v-wcq6"
-reason = "Peer dependency not being used"

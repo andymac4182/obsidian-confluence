@@ -1,0 +1,34 @@
+name: eurotempl
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - postgresql
+  - redis-py
+  - django
+  - djangorestframework
+  - pytest
+  - pytest-django
+  - black
+  - flake8
+  - isort
+  - mypy
+  - gdal
+  - numpy
+  - cmake
+  - cgal
+  - pybind11
+  - freecad
+  - pythonocc-core
+  - occt
+  - pip
+  - pip:
+    - django-cors-headers
+    - python-dotenv
+    - django-environ
+    - django-extensions
+    - semver
+    - pytest-asyncio
+    - cadquery
+    - psycopg2-binary
