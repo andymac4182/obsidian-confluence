@@ -26,3 +26,4 @@ dependencies:
     - drf-spectacular
     - postgis
     - semver
+    - pytest-asyncio

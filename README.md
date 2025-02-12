@@ -112,6 +112,19 @@ Before setting up the project, ensure you have:
    npm start
    ```
 
+7. Build cad_engine cpp bindings :
+
+```bash
+cd backend/cad_engine
+python setup.py build_ext --inplace   
+```
+8. build the C++ extensions for the parameters module:
+   ```bash
+   cd backend/parameters
+mkdir -p build
+
+   ```
+
 ## Development Guidelines
 
 ### Code Quality

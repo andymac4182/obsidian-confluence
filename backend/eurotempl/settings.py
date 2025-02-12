@@ -33,7 +33,7 @@ else:
 FREECAD_USER_PATH = os.path.join(os.path.expanduser('~'), '.FreeCAD')
 
 # Ensure FreeCAD user directory exists
-if FREECAD_PATH:
+if FREECAD_USER_PATH:
     os.makedirs(FREECAD_USER_PATH, exist_ok=True)
 
 from django.contrib.gis.gdal import GDAL_VERSION
@@ -68,7 +68,8 @@ INSTALLED_APPS = [
 
     # Project apps
     'core',
-    'cad_engine'
+    'cad_engine',
+    'parameters'
 ]
 
 MIDDLEWARE = [
